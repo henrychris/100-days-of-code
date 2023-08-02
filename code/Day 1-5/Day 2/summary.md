@@ -55,3 +55,75 @@ z would be of type number.
 ```
 
 So we could use it in situations where we know a value would exist, to hide ```Object is possibly 'undefined'``` warnings.
+
+# Interfaces
+Interfaces describe object shapes and help enforce a 'contract' in the TS type checker. Interfaces are generally recommended over type aliases (discussed on day 3), unless union types are required.
+
+```
+interface Dog{
+	name: string,
+	age: number
+}
+```
+
+## Interface functions
+Interfaces can define functions as members in two ways:
+1. Method syntax:
+```
+interface HasMethodFunction{
+	doSomething(): string
+}
+```
+
+These are members of the object, and have access to its internal state, properties and methods using the ```this``` keyword.  
+2. Property syntax:
+```
+interface HasPropertyFunction{
+	doSomething: () => string
+}
+```
+A function that is assigned to an object's property, and can't access internal state.
+
+### A guideline
+- Use a method function if you know the underlying function may refer to
+this, most commonly for instances of classes
+- Use a property function otherwise.
+
+## Call Signatures
+Call signatures define the shape of a function, the params it takes, the return type and any type constraints. They can be used to define functions that have the same set of params, possibly different implementations and same return type.
+
+```
+interface CashOut {
+	(agentId: string, amount: number, serialNumber: string): boolean
+}
+
+// now, any class implementing this will take the same parameters, do whatever and give us a result of expected type.
+const Lux: CashOut = (agentId, amount, serialNumber) => 
+{
+	return true;
+}
+```
+
+## Index Signatures
+Index signatures in TypeScript allow you to define object properties using a key of a particular type and specify the corresponding value type for that key. This provides flexibility when you want to define objects that have dynamic keys or keys with different types.
+
+```
+interface Dictionary{
+	[key: string]: number,
+}
+```
+
+this snippet defines an interface where a key can be any string, but it must have a number value. You may not duplicate key types in an interface.
+
+```
+interface Dictionary{
+	[key: string]: number,
+	[key: string]: boolean,
+}
+// this would throw an error
+```
+
+## Interface merging
+If two interfaces with the same name are declared within the same scope, they become one larger interface with all the separate fields. Try to avoid using this unless necessary. 
+
+Properties declared in both interfaces must have the same type. However, methods may have the same name but different signatures => that creates an overload.

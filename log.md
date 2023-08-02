@@ -11,9 +11,9 @@
 
 ### Day 2: August 01, Tuesday
 
-**Today's Progress**: 
+**Today's Progress**: Looked at interfaces and type assertions. Also solved two practice problems from the learning TypeScript textbook.
 
-**Thoughts** 
+**Thoughts**: Some of this stuff was rather confusing. I need to take another look at index signatures, and practice them. Array syntax and manipulation needs works too.
 
 **Link(s) to work**
 
