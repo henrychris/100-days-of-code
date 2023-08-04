@@ -21,12 +21,18 @@ export class Library {
         ];
     }
     addBook(title, author, genre) {
-        if (validateBook(title, author, genre)) {
-            let book = new Book(title, author, genre);
-            this.booksInLibrary.push(book);
-            return "Book added.";
+        try {
+            if (validateBook(title, author, genre)) {
+                let book = new Book(title, author, genre);
+                this.booksInLibrary.push(book);
+                return "Book added.";
+            }
+            return "Couldn't add book, something is missing.";
         }
-        return "Couldn't add book, something is missing.";
+        catch (error) {
+            const err = error;
+            return err.message;
+        }
     }
     removeBook(bookId) {
         if (this.isLibraryEmpty()) {
@@ -46,7 +52,11 @@ export class Library {
         return this.booksInLibrary.length === 0;
     }
     findBookInLibrary(bookId) {
-        return this.booksInLibrary.find((book) => book.id === bookId);
+        let book = this.booksInLibrary.find((book) => book.id === bookId);
+        if (typeof (book) === 'undefined') {
+            return false;
+        }
+        return true;
     }
 }
 function validateBook(title, author, genre) {

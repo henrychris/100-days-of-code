@@ -1,5 +1,10 @@
-import { Library } from "./classes";
+import { Library } from "./classes.js";
+import { createInterface } from "readline";
 const library = new Library();
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 function displayMenu() {
     console.log("1. Add book");
     console.log("2. Remove book");
@@ -7,29 +12,36 @@ function displayMenu() {
     console.log("4. Exit");
 }
 function addBook() {
-    var _a, _b, _c;
-    const title = (_a = prompt("Enter book title:")) !== null && _a !== void 0 ? _a : "";
-    const author = (_b = prompt("Enter book author:")) !== null && _b !== void 0 ? _b : "";
-    const genre = (_c = prompt("Enter book genre:")) !== null && _c !== void 0 ? _c : "";
-    const message = library.addBook(title, author, genre);
-    console.log(message);
+    rl.question("Enter book title: ", title => {
+        rl.question("Enter book author: ", author => {
+            rl.question("Enter book genre: ", genre => {
+                const message = library.addBook(title, author, genre);
+                console.log(message);
+                Start(); // After adding a book, restart the loop
+            });
+        });
+    });
+    // rl.close();
 }
 function removeBook() {
-    var _a;
-    const bookId = parseInt((_a = prompt("Enter book ID:")) !== null && _a !== void 0 ? _a : "0");
-    const message = library.removeBook(bookId);
-    console.log(message);
+    rl.question("Enter book ID: ", bookId => {
+        const message = library.removeBook(parseInt(bookId));
+        console.log(message);
+        Start(); // After removing a book, restart the loop
+    });
 }
 function displayBooks() {
     library.displayBooksInLibrary();
+    Start();
 }
 function Start() {
-    var _a;
     console.log("Here we gooo\n");
     let choice = 0;
-    while (choice !== 4) {
-        displayMenu();
-        choice = parseInt((_a = prompt("Enter your choice:")) !== null && _a !== void 0 ? _a : "");
+    displayMenu();
+    rl.setPrompt("Enter your choice: ");
+    rl.prompt();
+    rl.on('line', (line) => {
+        choice = parseInt(line !== null && line !== void 0 ? line : "0");
         switch (choice) {
             case 1:
                 addBook();
@@ -42,12 +54,14 @@ function Start() {
                 break;
             case 4:
                 console.log("Goodbye!");
-                break;
+                process.exit(0);
             default:
                 console.log("Invalid choice.");
                 break;
         }
-    }
+        rl.prompt();
+    });
 }
+// 
 Start();
 //# sourceMappingURL=index.js.map

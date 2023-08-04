@@ -27,12 +27,17 @@ export class Library {
 	];
 
 	public addBook(title: string, author: string, genre: string): string {
-		if (validateBook(title, author, genre)) {
-			let book = new Book(title, author, genre);
-			this.booksInLibrary.push(book);
-			return "Book added.";
+		try {
+			if (validateBook(title, author, genre)) {
+				let book = new Book(title, author, genre);
+				this.booksInLibrary.push(book);
+				return "Book added.";
+			}
+			return "Couldn't add book, something is missing.";
+		} catch (error) {
+			const err = error as Error
+			return err.message
 		}
-		return "Couldn't add book, something is missing.";
 	}
 
 	public removeBook(bookId: number): string {
@@ -54,8 +59,12 @@ export class Library {
 	private isLibraryEmpty(): boolean {
 		return this.booksInLibrary.length === 0;
 	}
-	private findBookInLibrary(bookId: number): Book | undefined {
-		return this.booksInLibrary.find((book) => book.id === bookId);
+	private findBookInLibrary(bookId: number): boolean {
+		let book = this.booksInLibrary.find((book) => book.id === bookId);
+		if (typeof (book) === 'undefined') {
+			return false;
+		}
+		return true;
 	}
 }
 

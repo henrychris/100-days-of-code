@@ -1,9 +1,11 @@
 {
   "name": "foo",
   "scripts": {
-    "tsc": "tsc"
+    "build": "tsc",
+    "start":"tsc && node dist/"
   },
   "devDependencies": {
     "typescript": "^5.1.6"
-  }
+  },
+  "type": "module"
 }
