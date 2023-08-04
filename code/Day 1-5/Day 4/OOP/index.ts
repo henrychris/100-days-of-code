@@ -42,13 +42,21 @@ function displayBooks() {
 	Start();
 }
 
+// Define the Start function
 function Start() {
+	// Initialize the choice variable to 0
 	let choice = 0;
+	// Call the displayMenu function to show the user the available options
 	displayMenu();
+	// Set the prompt for the readline interface
 	rl.setPrompt("Enter your choice: ")
+	// Display the prompt to the user
 	rl.prompt();
+	// Listen for input from the user
 	rl.on('line', (line) => {
+		// Parse the input as an integer and assign it to the choice variable
 		choice = parseInt(line ?? "0");
+		// Use a switch statement to determine which action to take based on the user's choice
 		switch (choice) {
 			case 1:
 				addBook();
@@ -66,6 +74,7 @@ function Start() {
 				console.log("Invalid choice.");
 				break;
 		}
+		// Display the prompt to the user again
 		rl.prompt()
 	});
 }
