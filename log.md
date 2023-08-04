@@ -19,8 +19,32 @@
 
 ### Day 3: August 03, Wednesday
 
+**Today's Progress**: Learned about union types, narrowing, null checks, literal types and type aliases.
+
+**Thoughts**: I don't think i learned much practically today. I need to build something to test my knowledge.
+
+**Link(s) to work**
+
+### Day 3: August 04, Thursday
+
+**Today's Progress**: Learnt a bunch about classes and type unions in objects. As with most JS, shit is weird and confusing. Built a simple application for library mgt. Need to debug why it doesn't work.
+
+**Thoughts**: I need to spend more time on fundamentals of this language before moving to bigger projects.
+
+**Link(s) to work**
+
+### Day 3: August 05, Friday
+
 **Today's Progress**: 
 
-**Thoughts** 
+**Thoughts**: 
+
+**Link(s) to work**
+
+### Day 3: August 06, Saturday
+
+**Today's Progress**: 
+
+**Thoughts**: 
 
 **Link(s) to work**
