@@ -25,7 +25,7 @@
 
 **Link(s) to work**
 
-### Day 3: August 04, Thursday
+### Day 4: August 04, Thursday
 
 **Today's Progress**: Learnt a bunch about classes and type unions in objects. As with most JS, shit is weird and confusing. Built a simple application for library mgt. Need to debug why it doesn't work.
 
@@ -33,15 +33,15 @@
 
 **Link(s) to work**
 
-### Day 3: August 05, Friday
+### Day 5: August 05, Friday
 
-**Today's Progress**: 
+**Today's Progress**: Completed yesterday's project. Finished functions chapter.
 
-**Thoughts**: 
+**Thoughts**: I feel good, but tiredness do be creeping in.
 
 **Link(s) to work**
 
-### Day 3: August 06, Saturday
+### Day 6: August 06, Saturday
 
 **Today's Progress**: 
 
