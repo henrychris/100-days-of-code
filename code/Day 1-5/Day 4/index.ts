@@ -99,3 +99,69 @@ console.log(person.age)
 person.job = 'Software Engineer'
 console.log(person.job)
 
+interface User {
+	name: string,
+	email: string,
+	role: string
+}
+
+interface SuperUser {
+	password: string,
+	secretKey: string
+}
+
+// must redefine inherited properties
+class SuperAgent implements User, SuperUser {
+	name: string;
+	email: string;
+	role: string;
+	// default values, i guess.
+	password: string = "";
+	secretKey: string = "";
+
+	constructor(name: string, email: string, role: string) {
+		this.name = name;
+		this.email = email;
+		this.role = role
+	}
+
+	speak() {
+		console.log("I'm speaking here!");
+	}
+}
+
+class Mfb extends SuperAgent {
+	bank: string;
+	constructor(name: string, email: string, role: string, bank: string) {
+		super(name, email, role);
+		this.name = name;
+		this.email = email;
+		this.role = role
+		this.bank = bank
+	}
+
+	// subclasses may override parent methods, as long as they have the same signature.
+	// properties are also allowed, as long as they are assignable to the base class/
+	speak(): void {
+		// this will print undefined.
+		// super is used to access the parent classes data
+		console.log(super.name);
+		// this will print Henry
+		console.log(this.name);
+	}
+}
+
+const ibile = new Mfb("Henry", "henry@test.com", "Mfb", "Ibile");
+ibile.speak();
+function testAssign(user: SuperAgent) {
+
+}
+
+// as ibile (Mfb type) extends SuperAgent, it can be passed where superAgent is expected.
+// i guess this can make role creation easier when mixed with typeof.
+// and as you know, with structural typing, the base class can be passed in
+// if it has the same properties as the derived class.
+// testAssign(ibile);
+
+// if you intend to have classes implement an interface, you can make good use of the method property.
+// that way, the different classes can implement the method in a way that suits them. Like, the famouse makeSound() example.
