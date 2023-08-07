@@ -17,7 +17,7 @@
 
 **Link(s) to work**
 
-### Day 3: August 03, Wednesday
+### Day 3: August 02, Wednesday
 
 **Today's Progress**: Learned about union types, narrowing, null checks, literal types and type aliases.
 
@@ -25,7 +25,7 @@
 
 **Link(s) to work**
 
-### Day 4: August 04, Thursday
+### Day 4: August 03, Thursday
 
 **Today's Progress**: Learnt a bunch about classes and type unions in objects. As with most JS, shit is weird and confusing. Built a simple application for library mgt. Need to debug why it doesn't work.
 
@@ -33,7 +33,7 @@
 
 **Link(s) to work**
 
-### Day 5: August 05, Friday
+### Day 5: August 05, Saturday
 
 **Today's Progress**: Completed yesterday's project. Finished functions chapter.
 
@@ -41,7 +41,15 @@
 
 **Link(s) to work**
 
-### Day 6: August 06, Saturday
+### Day 6: August 06, Sunday
+
+**Today's Progress**: Went over arrays and tuples
+
+**Thoughts**: Need to go over array functions and operations.
+
+**Link(s) to work**
+
+### Day 7: August 07, Monday
 
 **Today's Progress**: 
 
