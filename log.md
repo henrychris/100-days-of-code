@@ -51,8 +51,8 @@
 
 ### Day 7: August 07, Monday
 
-**Today's Progress**: 
+**Today's Progress**: Went over type guards, creating custom guards and the as statement.
 
-**Thoughts**: 
+**Thoughts**: Need to go over enums and type assertions. Ran out of time today.
 
 **Link(s) to work**
