@@ -1,28 +1,14 @@
-interface Shape {
-	type: "rect" | "circle",
-	radius?: number,
-	length?: number,
-	height?: number,
-}
+type Shape = Rect | Circle;
 
-class Rect implements Shape {
-	type: "rect" = "rect";
+interface Rect {
+	type: "rect";
 	length: number;
 	height: number;
-
-	constructor(length: number, height: number) {
-		this.length = length
-		this.height = height
-	}
 }
 
-class Circle implements Shape {
-	type: "circle" = "circle";
+interface Circle {
+	type: "circle";
 	radius: number;
-
-	constructor(radius: number) {
-		this.radius = radius;
-	}
 }
 
 function isCircle(shape: Shape): shape is Circle {
@@ -46,10 +32,19 @@ function CalculateArea(shape: Shape): number {
 }
 
 
-const circle: Circle = new Circle(5);
+const circle: Circle = {
+	radius: 5,
+	type: "circle"
+};
+
 const circleArea = CalculateArea(circle);
 
-const rect: Rect = new Rect(5, 10);
+const rect: Rect = {
+	length: 5,
+	height: 10,
+	type: "rect"
+}
+
 const rectArea = CalculateArea(rect);
 
 console.log(`Circle: ${circleArea}`);
