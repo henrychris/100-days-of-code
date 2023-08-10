@@ -69,6 +69,5 @@ try {
 	console.log(`Triangle: ${triangleArea}`);
 
 } catch (error) {
-	let err = error as Error
-	console.log(err.message);
+	isError(error) ? console.log(error.message) : console.log("WHoops!");
 }
