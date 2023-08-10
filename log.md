@@ -53,6 +53,14 @@
 
 **Today's Progress**: Went over type guards, creating custom guards and the as statement.
 
-**Thoughts**: Need to go over enums and type assertions. Ran out of time today.
+**Thoughts**: All good tbh. This is fun. Function overloading needs to be practiced more.
+
+**Link(s) to work**
+
+### Day 8: August 09, Monday
+
+**Today's Progress**: TSConfig and compiler options. Using different configs for different environments
+
+**Thoughts**: I need a break. Also, how does vsCode know which tsconfig to use in IDE?
 
 **Link(s) to work**
