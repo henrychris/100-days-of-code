@@ -1,4 +1,4 @@
-type Shape = Rect | Circle;
+type Shape = Rect | Circle | Triangle;
 
 interface Rect {
 	type: "rect";
@@ -9,6 +9,13 @@ interface Rect {
 interface Circle {
 	type: "circle";
 	radius: number;
+}
+
+interface Triangle {
+	type: 'triangle',
+	breadth: number,
+	height: number,
+	area(): number;
 }
 
 function isCircle(shape: Shape): shape is Circle {
@@ -37,7 +44,7 @@ const circle: Circle = {
 	type: "circle"
 };
 
-const circleArea = CalculateArea(circle);
+
 
 const rect: Rect = {
 	length: 5,
@@ -45,7 +52,23 @@ const rect: Rect = {
 	type: "rect"
 }
 
-const rectArea = CalculateArea(rect);
+const triangle: Triangle = {
+	type: 'triangle',
+	breadth: 10,
+	height: 3,
+	area(): number {
+		return this.breadth * this.height
+	}
+}
+try {
+	const circleArea = CalculateArea(circle);
+	console.log(`Circle: ${circleArea}`);
+	const rectArea = CalculateArea(rect);
+	console.log(`Rect: ${rectArea}`);
+	const triangleArea = CalculateArea(triangle);
+	console.log(`Triangle: ${triangleArea}`);
 
-console.log(`Circle: ${circleArea}`);
-console.log(`Rect: ${rectArea}`);
+} catch (error) {
+	let err = error as Error
+	console.log(err.message);
+}
