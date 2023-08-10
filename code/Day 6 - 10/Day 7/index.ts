@@ -29,6 +29,7 @@ type Dog = {
 }
 
 type Fish = {
+	name: string;
 	swim: () => void;
 }
 
@@ -95,6 +96,7 @@ interface BlackBoard extends Board {
 }
 
 // type guard for a discriminated union
+// the x is type clause tells the compiler the type of the object
 function isWhiteBoard(board: WhiteBoard | BlackBoard): board is WhiteBoard {
 	return board != null && board.type === "White";
 }
@@ -107,3 +109,36 @@ function doStuff(board: WhiteBoard | BlackBoard) {
 	}
 }
 
+// typescript allows a certain type to hold a value
+// but only allows property access if it is narrowed
+function doAnything(value: unknown) {
+	if (typeof value === 'string') {
+		console.log(value.toLocaleUpperCase());
+	}
+}
+
+// the keyof property can be used to enforce type safety
+// in situations where one wants to get the properties 
+// of an object in this manner.
+function getProperty(fish: Fish, key: keyof Fish) {
+	return fish[key];
+}
+
+let myFish: Fish = {
+	name: 'Henry',
+	swim() {
+
+	},
+}
+getProperty(myFish, 'name');
+
+let anotherFish: typeof myFish;
+// ! typeof gets the type of a value
+// ! keyof gets the allowed keys of a value
+// can be used together of course.
+function getProperties(key: keyof typeof myFish) {
+	console.log(myFish[key]);
+}
+
+// ? Type Assertions
+let val = getProperty(myFish, 'name') as string;
