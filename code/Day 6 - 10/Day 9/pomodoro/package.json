@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/"
+    "start": "tsc && node dist/",
+    "watch": "nodemon --watch ./ --ext ts --exec \"tsc && node dist/\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "typescript": "^5.1.6"
+  },
+  "nodemonConfig": {
+    "delay": 1500
   }
 }
