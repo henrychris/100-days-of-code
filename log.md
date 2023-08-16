@@ -64,3 +64,9 @@
 **Thoughts**: I need a break. Also, how does vsCode know which tsconfig to use in IDE?
 
 **Link(s) to work**
+
+### Day 9: August 16, Monday
+
+**Today's Progress**: Added timer to Pomodoro, improve quit event listener. Worked out the control flow. TODO: Add break timer, Add pause feature.
+
+**Thoughts**: 

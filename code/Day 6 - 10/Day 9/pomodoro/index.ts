@@ -1,6 +1,7 @@
 export { }
 import readline from 'readline';
 import { pomodoroTitle } from "./lib";
+import { exit } from 'process';
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -8,40 +9,55 @@ const rl = readline.createInterface({
 });
 const minutesPerPomodoro = 1;
 const breakPeriod = 5;
+let working = false;
 
 function formatTextWithOne(minutes: number, valueStr: string): string {
 	return minutes == 1
 		? `${minutes} ${valueStr}` : `${minutes} ${valueStr}s`;
 }
 
+
+/**
+ * Starts the Pomodoro timer and prompts the user for the number of focus periods they want to work for.
+ * @returns void
+ */
+/**
+ * Starts the Pomodoro timer and prompts the user for the number of focus periods they want to work for.
+ * @returns void
+ */
 function Start(): void {
-	rl.setPrompt(`A period is ${formatTextWithOne(minutesPerPomodoro, "minute")}, with a ${breakPeriod}-minute break.\nHow many periods do you want to focus for? `);
-	rl.prompt();
+	readline.clearScreenDown(process.stdout);
+	if (!working) {
+		rl.setPrompt(`A period is ${formatTextWithOne(minutesPerPomodoro, "minute")}, with a ${breakPeriod}-minute break.\nHow many periods do you want to focus for? `);
+		rl.prompt();
+	}
 
 	rl.on('line', (line) => {
-		if (line === 'q' || line === 'Q') {
-			rl.close();
-			return;
-		}
+		if (!working) {
+			if (line === 'q' || line === 'Q') {
+				rl.close();
+				exit(0);
+			}
 
-		let numberOfFocusPeriods = parseInt(line ?? "0");
-		if (!ValidateFocusPeriodsInput(numberOfFocusPeriods)) {
-			rl.prompt();
-			return;
-		}
+			let numberOfFocusPeriods = parseInt(line ?? "0");
+			if (!ValidateFocusPeriodsInput(numberOfFocusPeriods)) {
+				rl.prompt();
+				return;
+			}
 
-		let noOfBreaks = numberOfFocusPeriods - 1;
-		let time = numberOfFocusPeriods * minutesPerPomodoro;
+			let noOfBreaks = numberOfFocusPeriods - 1;
+			let time = numberOfFocusPeriods * minutesPerPomodoro;
 
-		console.log(`Time to focus for ${formatTextWithOne(time, "period")}!\nYou will have ${formatTextWithOne(noOfBreaks, "break")}!`)
-		StartPomodoro(numberOfFocusPeriods, minutesPerPomodoro);
+			console.log(`Time to focus for ${formatTextWithOne(time, "period")}!\nYou will have ${formatTextWithOne(noOfBreaks, "break")}!`)
 
-		if (line === 'q' || line === 'Q') {
-			rl.close();
-			return;
+			working = true;
+			StartPomodoro(numberOfFocusPeriods, minutesPerPomodoro);
+		} else if (line === 'q' || line === 'Q') {
+			exit(0);
 		}
 	});
 }
+
 
 Start();
 
@@ -73,7 +89,14 @@ function isValidFocusPeriod(focusPeriods: number): boolean {
 function StartPomodoro(focusPeriods: number, minutesPerPomodoro: number): void {
 	let currentFocusPeriod = focusPeriods;
 	let mins = minutesPerPomodoro;
-	let secs = 10;
+	const seconds = 59;
+	let secs = seconds;
+
+	if (mins === 1)
+	{
+		// count from less than a minute
+		mins = 0;
+	}
 	rl.write(pomodoroTitle);
 	/**
 	 * Starts the countdown timer for the Pomodoro technique.
@@ -90,14 +113,16 @@ function StartPomodoro(focusPeriods: number, minutesPerPomodoro: number): void {
 		if (mins === 0 && secs === 0) {
 			currentFocusPeriod--;
 			if (currentFocusPeriod === 0) {
+				working = false;
+				Start();
 				return;
 			}
 			mins = minutesPerPomodoro;
-			secs = 59;
+			secs = seconds;
 			setTimeout(countdown, 1000);
 		} else if (secs === 0) {
 			mins--;
-			secs = 59;
+			secs = seconds;
 			setTimeout(countdown, 1000);
 		} else {
 			secs--;
@@ -116,3 +141,6 @@ function StartPomodoro(focusPeriods: number, minutesPerPomodoro: number): void {
 function formatNumberWithLeadingZero(number: number) {
 	return number.toString().padStart(2, '0');
 }
+
+
+// TODO: 
