@@ -5,5 +5,7 @@ exports.pomodoroTitle = `*******************************
 *                             *
 *       POMODORO TIMER        *
 *                             *
-*******************************`;
+*******************************
+
+[Q] Quit`;
 //# sourceMappingURL=lib.js.map
